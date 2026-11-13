@@ -227,7 +227,19 @@ select.input { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://ww
   .mark { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
   .section { break-inside: avoid; }
 }
+.login { position: fixed; inset: 0; z-index: 100; background: var(--paper); display: flex; align-items: center; justify-content: center; padding: max(24px, env(safe-area-inset-top)) 20px 24px; overflow-y: auto; }
+.login[hidden] { display: none; }
+.login-box { width: 100%; max-width: 380px; }
+.login-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 28px; }
+.login-top .logo { height: 52px; }
+.login h1 { font-size: 22px; font-weight: 800; letter-spacing: -0.01em; margin-bottom: 6px; }
+.login-box > p { font-size: 14px; color: var(--grey); margin-bottom: 20px; }
+.login .code { font-size: 28px; font-weight: 800; letter-spacing: .3em; text-align: center; }
+.login .link-btn { display: block; margin: 12px auto 0; }
+.login-err { color: var(--danger); font-size: 13px; margin-top: 12px; min-height: 1.2em; }
+.acct { font-size: 14px; font-weight: 600; margin-bottom: 10px; word-break: break-all; }
 </style>
+<script src="supabase.js"></script>
 </head>
 <body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><path id="logo-shape" fill-rule="evenodd" d="M172.7 466.6C204.3 458.7 236.6 440.2 267.9 412.2C273.9 406.7 275.1 406.1 275.6 407.7C277.7 414.2 283.7 424.4 288.5 429.7C294.5 436.4 300.4 441.0 309.1 445.9L314.8 449.1L326.0 433.4C332.1 424.7 337.4 417.1 337.6 416.5C337.9 415.9 334.6 413.3 330.3 410.8C316.9 402.8 314.0 398.2 314.0 384.9C314.0 370.2 318.6 356.1 334.1 323.9C340.1 311.5 344.4 301.2 345.0 297.8C346.1 291.9 345.2 285.2 342.5 280.1C340.5 276.1 333.8 270.4 329.4 268.9C323.0 266.6 307.6 267.4 287.5 270.8C250.1 277.3 239.7 278.3 209.5 278.5L181.5 278.7L180.9 289.1C180.5 294.8 180.2 303.8 180.1 309.2L180.0 318.8L190.8 319.5C212.6 321.0 246.4 318.9 276.8 314.1L288.1 312.3L287.5 314.9C287.2 316.3 284.3 322.9 281.0 329.5C258.5 374.8 202.0 419.9 157.5 428.1C154.2 428.7 147.0 429.0 141.5 428.8C127.5 428.3 120.9 425.1 109.0 413.2C94.8 399.0 90.3 387.7 91.3 368.5C92.2 350.1 98.8 330.5 114.5 299.0C147.0 234.0 196.5 171.4 247.5 130.6C268.0 114.3 294.0 99.3 313.1 92.9C328.8 87.6 342.7 88.9 352.8 96.6C358.4 100.9 362.5 111.1 365.4 127.9C366.2 132.4 367.1 136.4 367.3 136.6C367.6 136.9 376.2 135.9 386.5 134.5C396.8 133.1 405.4 132.0 405.6 132.0C406.5 132.0 405.9 121.6 404.5 114.3C399.2 86.3 386.6 67.3 366.9 57.6C338.4 43.6 311.5 46.0 272.7 66.0C232.8 86.5 195.4 117.5 157.6 161.5C106.7 220.7 64.1 295.9 52.8 346.2C49.5 361.0 49.5 384.7 52.9 397.0C57.7 414.8 66.6 429.5 80.8 443.2C93.6 455.5 103.1 461.7 116.0 465.8C126.8 469.3 131.8 469.9 147.5 469.5C159.4 469.2 164.6 468.6 172.7 466.6ZM492.3 385.3C499.9 379.1 506.6 374.0 507.1 374.0C507.6 374.0 508.0 375.1 508.0 376.4C508.0 378.6 508.5 378.9 513.2 379.4C516.1 379.8 524.4 380.1 531.5 380.3L544.5 380.5L545.2 362.0C546.2 333.9 550.5 293.6 553.0 289.0C553.5 288.0 562.8 285.3 579.7 281.1C593.9 277.6 606.4 274.4 607.4 274.2C609.2 273.7 609.3 274.2 608.7 285.6C607.9 299.4 609.3 325.7 611.5 338.0C613.1 347.1 616.9 359.0 618.1 359.0C619.6 359.0 653.5 346.8 654.4 345.9C654.9 345.4 654.6 342.7 653.7 339.3C650.0 326.3 649.9 320.2 649.9 210.5C650.0 142.7 649.7 100.3 649.0 96.5C647.1 85.2 639.2 78.0 628.6 78.0C618.9 78.0 613.3 82.6 594.4 106.5C575.6 130.3 558.4 157.5 543.3 187.5C538.1 197.9 534.1 205.6 534.4 204.5C540.0 188.5 540.0 166.3 534.6 144.7C525.5 109.0 499.5 84.3 463.1 76.8C452.3 74.6 446.0 74.9 439.8 78.1C434.3 80.9 430.6 86.7 426.6 98.8C417.8 125.4 386.8 228.5 374.6 271.5C372.1 280.3 366.7 298.1 362.5 311.0C353.8 338.0 350.5 349.9 348.5 362.5C346.9 372.2 346.5 388.7 347.9 390.8C348.5 391.9 352.1 391.8 367.5 390.5C377.9 389.6 386.5 388.8 386.7 388.7C386.8 388.5 387.4 383.4 388.0 377.3C388.5 371.2 390.1 361.8 391.5 356.4C394.4 345.1 404.8 311.9 405.9 310.8C406.2 310.4 408.4 312.4 410.7 315.3C413.0 318.1 420.6 326.6 427.6 334.0C447.0 354.6 459.3 370.4 467.5 385.5C471.9 393.6 475.8 398.2 477.4 397.3C478.0 396.9 484.7 391.5 492.3 385.3ZM872.0 366.2C873.9 359.8 875.5 351.5 875.8 347.9L876.2 341.3L857.4 339.8C841.4 338.6 838.3 338.5 837.4 339.7C834.8 342.8 828.4 373.6 830.2 374.1C832.4 374.6 860.7 377.8 864.1 377.9L868.8 378.0L872.0 366.2ZM776.8 373.0C790.6 370.4 794.0 369.4 794.0 368.1C794.0 367.2 793.3 362.7 792.5 358.0C788.3 335.0 786.9 321.5 786.3 301.5C785.4 265.9 789.6 219.3 794.5 212.0C799.1 205.3 800.1 199.5 797.9 193.1C797.0 190.5 797.4 187.1 800.5 172.7C804.7 153.0 813.7 116.3 818.1 101.3C819.7 95.7 821.3 89.1 821.6 86.7C822.2 82.3 822.2 82.3 818.9 81.7C816.4 81.2 792.2 79.8 782.6 79.5C782.1 79.5 780.8 82.4 779.8 86.0C775.6 100.6 763.9 147.6 760.6 164.0C758.6 173.6 756.8 181.5 756.7 181.6C756.6 181.6 751.5 182.9 745.5 184.4C739.5 185.9 729.2 188.7 722.7 190.7C716.3 192.7 710.7 194.0 710.4 193.7C709.5 192.9 718.9 146.6 725.0 121.0C727.8 109.7 730.0 98.8 730.0 96.8C730.0 93.2 729.8 93.0 727.0 93.0C721.9 93.0 689.6 97.1 688.9 97.8C687.1 99.7 674.1 159.9 670.0 185.5C660.3 245.4 661.8 306.9 673.9 339.2C677.4 348.3 676.8 348.3 696.0 339.5C709.4 333.3 713.0 331.2 713.0 329.7C713.0 328.7 712.1 324.8 711.0 321.2C706.3 305.4 703.5 273.1 704.8 250.5L705.5 239.5L715.0 236.2C729.9 231.0 748.0 225.7 748.7 226.3C749.0 226.6 748.4 234.0 747.4 242.7C745.1 262.5 744.8 316.1 746.8 331.0C748.8 345.5 753.9 375.1 754.6 376.2C754.9 376.7 756.2 376.9 757.4 376.7C758.5 376.4 767.3 374.7 776.8 373.0ZM500.0 359.8C491.6 345.2 476.6 326.3 455.3 303.7C447.6 295.5 439.8 286.3 438.0 283.3C433.9 276.6 433.3 277.2 450.0 269.3C496.1 247.3 505.0 242.0 517.5 229.4C521.5 225.5 526.7 219.1 529.0 215.3C531.3 211.6 532.9 209.4 532.5 210.5C532.0 211.6 530.2 216.5 528.3 221.3C521.2 239.8 513.6 271.1 509.6 299.0C507.8 310.8 505.4 336.6 504.2 354.2L503.5 365.9L500.0 359.8ZM879.2 299.3L888.9 298.7L890.0 293.1C898.3 251.2 924.7 181.8 963.1 100.7C969.1 88.0 974.0 77.0 974.0 76.4C974.0 75.7 970.0 74.3 964.2 73.0C958.9 71.8 950.0 69.7 944.5 68.5C939.0 67.2 934.5 66.2 934.4 66.3C931.6 69.7 902.5 133.8 889.1 166.2C867.3 218.8 849.0 277.5 849.0 295.0L849.0 300.0L859.2 300.0C864.9 300.0 873.9 299.7 879.2 299.3ZM564.5 240.8C565.6 237.2 572.3 221.5 576.9 211.7C583.7 197.1 603.6 162.5 607.7 158.0C608.8 156.8 609.0 162.7 609.0 194.2L609.0 231.8L588.2 236.9C576.8 239.8 566.7 242.3 565.7 242.6C564.1 243.1 563.9 242.8 564.5 240.8ZM428.3 232.8C428.5 232.1 431.3 222.9 434.4 212.5C445.6 175.4 462.2 121.5 462.9 120.2C464.0 118.2 475.3 124.4 481.5 130.4C491.9 140.6 497.2 155.6 497.4 175.5C497.5 186.0 497.2 188.0 495.3 191.6C489.4 202.8 477.5 211.2 449.5 224.2C429.8 233.3 427.7 234.2 428.3 232.8Z"/></defs></svg>
@@ -380,10 +392,8 @@ select.input { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://ww
     <div class="set-block">
       <h2 data-i18n="connTitle"></h2>
       <p data-i18n="connDesc"></p>
-      <div class="field"><label for="s-url" data-i18n="connUrl"></label><input class="input" id="s-url" type="url" placeholder="https://script.google.com/macros/s/…/exec" autocomplete="off"></div>
-      <div class="field"><label for="s-key" data-i18n="connKey"></label><input class="input" id="s-key" type="text" data-i18n-ph="connKeyPh" autocomplete="off"></div>
-      <button class="btn" id="btn-connect" data-i18n="connect"></button>
-      <button class="btn ghost" id="btn-setup-link" data-i18n="copySetupLink"></button>
+      <p class="acct" id="s-account"></p>
+      <button class="btn ghost" id="btn-signout" data-i18n="signOut"></button>
     </div>
 
     <div class="set-block">
@@ -433,6 +443,14 @@ select.input { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://ww
       <h2 data-i18n="dataTitle"></h2>
       <button class="btn ghost" id="btn-export-all" data-i18n="exportAll"></button>
       <button class="btn ghost" id="btn-sync" data-i18n="reload"></button>
+    </div>
+
+    <div class="set-block">
+      <h2 data-i18n="importTitle"></h2>
+      <p data-i18n="importDesc"></p>
+      <div class="field"><label for="s-url" data-i18n="connUrl"></label><input class="input" id="s-url" type="url" placeholder="https://script.google.com/macros/s/…/exec" autocomplete="off"></div>
+      <div class="field"><label for="s-key" data-i18n="connKey"></label><input class="input" id="s-key" type="text" data-i18n-ph="connKeyPh" autocomplete="off"></div>
+      <button class="btn ghost" id="btn-import" data-i18n="importBtn"></button>
     </div>
   </section>
 </div>
@@ -492,6 +510,28 @@ select.input { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://ww
   </div>
 </div>
 
+<div class="login" id="login" hidden>
+  <div class="login-box">
+    <div class="login-top">
+      <svg class="logo" role="img" aria-label="GRAH!" viewBox="46 44 931 429"><use href="#logo-shape"/></svg>
+      <button class="lang" id="l-lang" type="button" aria-label="Langue / 언어">FR</button>
+    </div>
+    <h1 data-i18n="loginTitle"></h1>
+    <p data-i18n="loginDesc"></p>
+    <div id="login-step1">
+      <div class="field"><label for="l-email" data-i18n="loginEmail"></label><input class="input" id="l-email" type="email" autocomplete="email" inputmode="email" autocapitalize="off"></div>
+      <button class="btn" id="l-send" data-i18n="sendCode"></button>
+    </div>
+    <div id="login-step2" hidden>
+      <p class="hint" id="l-sent" style="margin:0 0 14px"></p>
+      <div class="field"><label for="l-code" data-i18n="codeLabel"></label><input class="input num code" id="l-code" inputmode="numeric" autocomplete="one-time-code" maxlength="10"></div>
+      <button class="btn" id="l-verify" data-i18n="verify"></button>
+      <button class="link-btn" id="l-back" type="button" data-i18n="otherEmail"></button>
+    </div>
+    <p class="login-err" id="l-err" role="alert"></p>
+  </div>
+</div>
+
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
 <script>
@@ -500,7 +540,7 @@ const I18N = {
   ko: {
     tabInput: '기록', tabList: '내역', tabMembers: '회원', tabReport: '보고서', tabSettings: '설정',
     syncNow: '지금 동기화', local: '로컬 전용', synced: '동기화됨', saving: '저장 중…', loading: '불러오는 중…', checking: '확인 중…',
-    pending: '{n}건 대기 중', keyError: '키 오류', offline: '오프라인', connFail: '연결 실패',
+    pending: '{n}건 대기 중', keyError: '로그인 필요', offline: '오프라인', connFail: '연결 실패',
     kindIn: '수입', kindOut: '지출', kindMove: '이동', kindInAlt: 'Recette', kindOutAlt: 'Dépense', kindMoveAlt: 'Transfert',
     amount: '금액', category: '카테고리', method: '결제수단', date: '날짜', toAccount: '받는 계정',
     accFrom: '보내는 계정', accIn: '들어온 계정', accOut: '나간 계정',
@@ -545,7 +585,7 @@ const I18N = {
     printReport: '보고서 인쇄 / PDF 저장', exportYear: '이 연도 CSV 내보내기',
     thisDevice: '이 기기', thisDeviceDesc: '이름은 기록마다 누가 입력했는지 남기는 데 쓰여요. 언어는 기기마다 따로 정할 수 있어요.',
     yourName: '내 이름', yourNamePh: '예: Won', language: '언어',
-    connTitle: '구글 시트 연결', connDesc: '이 기기에만 저장됩니다. 공개 저장소에 주소와 키가 노출되지 않도록 코드에 넣지 않았어요.',
+    connTitle: '로그인 계정', connDesc: 'bureau로 등록된 이메일만 회계 데이터를 볼 수 있어요.', signedInAs: '{e}', signOut: '로그아웃',
     connUrl: 'Apps Script 웹앱 주소', connKey: '접근 키', connKeyPh: 'Code.gs의 ACCESS_KEY와 같은 값', connect: '연결하고 불러오기', copySetupLink: '다른 기기용 연결 링크 복사',
     feesTitle: '회비와 기부', feesDesc: '회비 카테고리로 기록하면 회원별 납부 현황에 자동으로 반영돼요. 회비 금액은 회원의 회비 구분(일반/학생)에 맞춰 채워져요.',
     feeNormal: '일반 회비 (€)', feeStudent: '학생 회비 (€)', feeCategory: '회비 카테고리', donCategory: '기부 카테고리',
@@ -553,19 +593,27 @@ const I18N = {
     accountsTitle: '계정과 기초 잔액', accountsDesc: '협회를 시작할 때 각 계정에 있던 금액이에요. 잔액 계산의 출발점이 됩니다.',
     categoriesTitle: '카테고리', methodsTitle: '결제수단', projectsTitle: '프로젝트 / 활동', dataTitle: '데이터',
     newAccountPh: '새 계정 (예: Livret A)', newCatPh: '새 카테고리', newMethodPh: '새 결제수단', newProjectPh: '새 프로젝트 이름', add: '추가',
-    exportAll: '전체 CSV 내보내기', reload: '구글 시트에서 다시 불러오기',
+    exportAll: '전체 CSV 내보내기', reload: '다시 불러오기',
     moveUp: '위로', remove: '삭제', cantRemove: '사용 중이라 삭제할 수 없어요', keepOne: '최소 하나는 남겨야 해요', exists: '이미 있어요', added: '추가했어요',
     openingChanged: '기초 잔액을 바꿨어요', settingsSaved: '설정을 저장했어요',
-    needConnect: '설정에서 구글 시트를 먼저 연결하세요', pendingBlock: '보내지 못한 기록이 있어 불러오기를 미뤘어요',
+    needConnect: '먼저 로그인하세요', pendingBlock: '보내지 못한 기록이 있어 불러오기를 미뤘어요',
     pulled: '불러왔어요 · {n}건', pullFail: '불러오지 못했어요: {e}', urlFormat: '주소는 https://script.google.com/…/exec 형식이어야 해요', keyNeeded: '접근 키를 입력하세요',
     connectedUp: '연결했어요 · 이 기기의 기록 {n}건을 시트에 올렸어요', connectedDown: '연결했어요 · {n}건 불러옴', connectFail: '연결하지 못했어요: {e}',
     connectFirst: '먼저 이 기기를 연결하세요', linkCopied: '복사했어요 · 다른 기기에서 이 링크를 한 번 여세요', linkPrompt: '이 링크를 다른 기기에서 여세요',
-    nothingExport: '내보낼 항목이 없어요', downloaded: 'CSV를 내려받았어요', askName: '설정에서 내 이름을 넣어 두면 누가 입력했는지 남아요'
+    nothingExport: '내보낼 항목이 없어요', downloaded: 'CSV를 내려받았어요', askName: '설정에서 내 이름을 넣어 두면 누가 입력했는지 남아요',
+    loginTitle: 'GRAH! Compta 로그인', loginDesc: 'bureau 이메일 주소를 넣으면 로그인 코드를 메일로 보내드려요.', loginEmail: '이메일',
+    sendCode: '코드 받기', codeSent: '{e}(으)로 코드를 보냈어요. 받은편지함과 스팸함을 확인하세요.', codeLabel: '메일로 받은 코드', verify: '로그인', otherEmail: '다른 이메일로',
+    errEmail: '이메일 주소를 확인하세요', errCode: '코드가 맞지 않거나 시간이 지났어요. 새 코드를 받아 보세요.', sendFail: '코드를 보내지 못했어요: {e}',
+    notBureau: '{e}은(는) bureau로 등록되어 있지 않아 회계 데이터를 볼 수 없어요.', notConfigured: 'Supabase 연결 정보(SB_URL, SB_KEY)가 아직 없어요.',
+    signOutPending: '보내지 못한 기록이 있어요. 인터넷에 연결된 뒤 로그아웃하세요.', confirmSignOut: '로그아웃하면 이 기기에 저장된 회계 사본도 지워요. 계속할까요?',
+    importTitle: '구글 시트에서 옮기기', importDesc: '예전 앱의 구글 시트 데이터(기록, 회원, 설정)를 한 번에 옮겨요. 다시 해도 같은 기록이 두 번 생기지 않아요.',
+    importBtn: '구글 시트에서 가져오기', importing: '옮기는 중…', imported: '옮겼어요 · 기록 {e}건, 회원 {m}명',
+    importRenum: '증빙번호가 겹쳐 바뀐 기록이 {n}건 있어요: {l}', importFail: '옮기지 못했어요: {e}'
   },
   fr: {
     tabInput: 'Saisie', tabList: 'Journal', tabMembers: 'Membres', tabReport: 'Bilan', tabSettings: 'Réglages',
     syncNow: 'Synchroniser', local: 'Local', synced: 'Synchronisé', saving: 'Envoi…', loading: 'Chargement…', checking: 'Vérification…',
-    pending: '{n} en attente', keyError: 'Clé refusée', offline: 'Hors ligne', connFail: 'Échec',
+    pending: '{n} en attente', keyError: 'Connexion requise', offline: 'Hors ligne', connFail: 'Échec',
     kindIn: 'Recette', kindOut: 'Dépense', kindMove: 'Transfert', kindInAlt: '수입', kindOutAlt: '지출', kindMoveAlt: '이동',
     amount: 'Montant', category: 'Catégorie', method: 'Moyen de paiement', date: 'Date', toAccount: 'Vers le compte',
     accFrom: 'Depuis le compte', accIn: 'Compte crédité', accOut: 'Compte débité',
@@ -610,7 +658,7 @@ const I18N = {
     printReport: 'Imprimer / enregistrer en PDF', exportYear: 'Exporter cette année en CSV',
     thisDevice: 'Cet appareil', thisDeviceDesc: 'Votre nom est enregistré avec chaque écriture. La langue se règle séparément sur chaque appareil.',
     yourName: 'Votre nom', yourNamePh: 'ex. Camille', language: 'Langue',
-    connTitle: 'Connexion Google Sheets', connDesc: 'Enregistré sur cet appareil uniquement : l’adresse et la clé ne figurent pas dans le code public.',
+    connTitle: 'Compte', connDesc: 'Seules les adresses enregistrées pour le bureau ont accès aux données.', signedInAs: '{e}', signOut: 'Se déconnecter',
     connUrl: 'Adresse de l’application Apps Script', connKey: 'Clé d’accès', connKeyPh: 'Même valeur que ACCESS_KEY dans Code.gs', connect: 'Connecter et charger', copySetupLink: 'Copier le lien de connexion pour un autre appareil',
     feesTitle: 'Cotisations et dons', feesDesc: 'Les recettes de la catégorie cotisation alimentent le suivi des membres. Le montant proposé suit le tarif du membre (normal ou étudiant).',
     feeNormal: 'Cotisation normale (€)', feeStudent: 'Cotisation étudiante (€)', feeCategory: 'Catégorie cotisation', donCategory: 'Catégorie dons',
@@ -618,14 +666,22 @@ const I18N = {
     accountsTitle: 'Comptes et soldes initiaux', accountsDesc: 'Montant présent sur chaque compte au démarrage de l’association : point de départ du calcul des soldes.',
     categoriesTitle: 'Catégories', methodsTitle: 'Moyens de paiement', projectsTitle: 'Projets / actions', dataTitle: 'Données',
     newAccountPh: 'Nouveau compte (ex. Livret A)', newCatPh: 'Nouvelle catégorie', newMethodPh: 'Nouveau moyen de paiement', newProjectPh: 'Nouveau projet', add: 'Ajouter',
-    exportAll: 'Exporter tout en CSV', reload: 'Recharger depuis Google Sheets',
+    exportAll: 'Exporter tout en CSV', reload: 'Recharger',
     moveUp: 'Monter', remove: 'Supprimer', cantRemove: 'Utilisé, suppression impossible', keepOne: 'Il en faut au moins un', exists: 'Existe déjà', added: 'Ajouté',
     openingChanged: 'Solde initial modifié', settingsSaved: 'Réglages enregistrés',
-    needConnect: 'Connectez d’abord Google Sheets dans les réglages', pendingBlock: 'Des écritures n’ont pas encore été envoyées : chargement reporté',
+    needConnect: 'Connectez-vous d’abord', pendingBlock: 'Des écritures n’ont pas encore été envoyées : chargement reporté',
     pulled: 'Chargé · {n} écritures', pullFail: 'Chargement impossible : {e}', urlFormat: 'L’adresse doit avoir la forme https://script.google.com/…/exec', keyNeeded: 'Saisissez la clé d’accès',
     connectedUp: 'Connecté · {n} écritures de cet appareil envoyées', connectedDown: 'Connecté · {n} écritures chargées', connectFail: 'Connexion impossible : {e}',
     connectFirst: 'Connectez d’abord cet appareil', linkCopied: 'Lien copié · ouvrez-le une fois sur l’autre appareil', linkPrompt: 'Ouvrez ce lien sur l’autre appareil',
-    nothingExport: 'Rien à exporter', downloaded: 'CSV téléchargé', askName: 'Indiquez votre nom dans les réglages pour signer vos écritures'
+    nothingExport: 'Rien à exporter', downloaded: 'CSV téléchargé', askName: 'Indiquez votre nom dans les réglages pour signer vos écritures',
+    loginTitle: 'Connexion à GRAH! Compta', loginDesc: 'Saisissez votre adresse e-mail du bureau : vous recevrez un code de connexion.', loginEmail: 'E-mail',
+    sendCode: 'Recevoir le code', codeSent: 'Code envoyé à {e}. Regardez aussi dans les indésirables.', codeLabel: 'Code reçu par e-mail', verify: 'Se connecter', otherEmail: 'Changer d’adresse',
+    errEmail: 'Vérifiez l’adresse e-mail', errCode: 'Code incorrect ou expiré. Demandez un nouveau code.', sendFail: 'Envoi impossible : {e}',
+    notBureau: '{e} n’est pas enregistré·e pour le bureau : pas d’accès aux données.', notConfigured: 'Configuration Supabase manquante (SB_URL, SB_KEY).',
+    signOutPending: 'Des écritures n’ont pas encore été envoyées. Reconnectez-vous à Internet avant de vous déconnecter.', confirmSignOut: 'La copie des données sur cet appareil sera effacée. Continuer ?',
+    importTitle: 'Importer depuis Google Sheets', importDesc: 'Copie en une fois les données de l’ancienne application (écritures, membres, réglages). Peut être relancé sans créer de doublons.',
+    importBtn: 'Importer depuis Google Sheets', importing: 'Import en cours…', imported: 'Importé · {e} écritures, {m} membres',
+    importRenum: '{n} pièces renumérotées (numéro déjà pris) : {l}', importFail: 'Import impossible : {e}'
   }
 };
 const ROLES = ['none', 'president', 'treasurer', 'secretary'];      // 직책 (bureau)
@@ -639,11 +695,13 @@ function applyI18n() {
   document.querySelectorAll('[data-i18n-ph]').forEach(el => el.placeholder = t(el.dataset.i18nPh));
   document.querySelectorAll('[data-i18n-title]').forEach(el => el.title = t(el.dataset.i18nTitle));
   $('lang-btn').textContent = lang === 'ko' ? 'FR' : '한';
+  $('l-lang').textContent = lang === 'ko' ? 'FR' : '한';
   document.querySelectorAll('#s-lang .chip').forEach(c => c.setAttribute('aria-pressed', c.dataset.lang === lang));
 }
 
 /* ───────── 설정값 ───────── */
-const K = { entries: 'grah-entries-v1', settings: 'grah-settings-v1', conn: 'grah-conn-v1', queue: 'grah-queue-v1', members: 'grah-members-v1', device: 'grah-device-v1' };
+const K = { entries: 'grah3-entries', settings: 'grah3-settings', queue: 'grah3-queue', members: 'grah3-members', device: 'grah3-device' };
+const OLD = { conn: 'grah-conn-v1', device: 'grah-device-v1' };   // ancienne version (Google Sheets)
 const DEFAULTS = {
   catsIn: ['Cotisations','Dons','Subventions','Ventes / prestations','Billetterie / ateliers','Autres recettes'],
   catsOut: ['Achats matériel / fournitures','Honoraires / rémunération artistes','Déplacements / transport','Repas / réception','Location (lieu, matériel)','Communication / impression','Assurance','Frais bancaires','Autres dépenses'],
@@ -655,8 +713,7 @@ const DEFAULTS = {
 
 let entries = [], members = [];
 let settings = clone(DEFAULTS);
-let conn = { url: '', key: '' };
-let device = { user: '', lang: '' };
+let device = { user: '', lang: '', email: '', bureau: false };
 let queue = [];
 let form = { kind: 'out', method: '', receipt: 'paper', lastMemberName: '', autoAmt: '' };
 let editingId = null, returnTo = null;
@@ -712,8 +769,8 @@ function loadLocal() {
   entries = arr(get(K.entries, [])).map(normalize);
   members = arr(get(K.members, [])).map(normMember);
   const s = get(K.settings, null); if (s) settings = mergeSettings(s);
-  const c = get(K.conn, null); if (c) conn = { url: c.url || '', key: c.key || '' };
-  const d = get(K.device, null); if (d) device = { user: d.user || '', lang: d.lang || '' };
+  const d = get(K.device, null) || get(OLD.device, null);
+  if (d) device = { user: d.user || '', lang: d.lang || '', email: d.email || '', bureau: !!d.bureau };
   queue = arr(get(K.queue, []));
 }
 function saveLocal() {
@@ -769,12 +826,50 @@ function normMember(m) {
 /* ───────── 동기화 ───────── */
 let syncState = ['local', 'local', null];
 function setSync(state, key, v) { syncState = [state, key, v]; $('sync-dot').className = 'sync-dot ' + state; $('sync-text').textContent = t(key, v); }
-function connected() { return !!(conn.url && conn.key); }
-async function api(payload) {
-  const res = await fetch(conn.url, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify({ key: conn.key, ...payload }) });
-  const data = await res.json();
-  if (!data.ok) throw new Error(data.error || 'server');
-  return data;
+/* Supabase : adresse du projet et clé publique (publishable). Cette clé peut être publique :
+   ce sont les règles de la base (RLS) qui limitent l'accès aux personnes du bureau. */
+const SB_URL = 'https://gxwnkhebrgqscyiqymud.supabase.co';
+const SB_KEY = 'sb_publishable_rWzYzPhQ-8dvxPRfqeCO8g_rH5mj1xe';
+const sb = (/^https:\/\//.test(SB_URL) && SB_KEY.length > 20 && window.supabase)
+  ? window.supabase.createClient(SB_URL, SB_KEY, { auth: { persistSession: true, autoRefreshToken: true, detectSessionInUrl: false, storageKey: 'grah3-auth' } })
+  : null;
+let session = null, isBureau = false;
+function connected() { return !!(sb && session && isBureau); }
+function toRow(e) {
+  return { id: e.id, date: e.date || null, kind: e.kind, amount: e.amount, method: e.method, account: e.account, to_account: e.toAccount,
+    category: e.category, project: e.project, party: e.party, description: e.desc, note: e.note, receipt: e.receipt, piece: e.piece,
+    member_id: e.memberId, period: e.period, by_name: e.by, updated: e.updated };
+}
+function fromRow(r) { return { ...r, toAccount: r.to_account, desc: r.description, memberId: r.member_id, by: r.by_name }; }
+function mToRow(m) {
+  return { id: m.id, name: m.name, email: m.email, phone: m.phone, address: m.address, role: m.role, category: m.category, tarif: m.tarif,
+    heb: !!m.heb, heb_date: m.heb && m.hebDate ? m.hebDate : null, joined: m.joined || null, note: m.note, active: !!m.active, updated: m.updated };
+}
+function mFromRow(r) { return { ...r, hebDate: r.heb_date || '' }; }
+function sbOk(r) { if (r.error) throw new Error(r.error.message); return r.data; }
+async function sbAll(table) {
+  const out = [];
+  for (let from = 0; ; from += 1000) {
+    const rows = sbOk(await sb.from(table).select('*').order('id').range(from, from + 999));
+    out.push(...rows);
+    if (rows.length < 1000) return out;
+  }
+}
+async function api(op) {
+  if (!connected()) throw new Error('auth');
+  switch (op.action) {
+    case 'save': { const d = sbOk(await sb.from('entries').upsert(toRow(op.entry)).select('piece').single()); return { ok: true, piece: d.piece }; }
+    case 'delete': sbOk(await sb.from('entries').delete().eq('id', op.id)); return { ok: true };
+    case 'saveMember': sbOk(await sb.from('members').upsert(mToRow(op.member))); return { ok: true };
+    case 'deleteMember': sbOk(await sb.from('members').delete().eq('id', op.id)); return { ok: true };
+    case 'saveSettings': sbOk(await sb.from('settings').upsert({ id: 1, data: op.settings })); return { ok: true };
+    case 'list': {
+      const [e, m, st] = await Promise.all([sbAll('entries'), sbAll('members'), sb.from('settings').select('data').eq('id', 1).maybeSingle()]);
+      const sd = sbOk(st);
+      return { ok: true, entries: e.map(fromRow), members: m.map(mFromRow), settings: sd ? sd.data : null };
+    }
+  }
+  throw new Error('action ' + op.action);
 }
 // 모든 변경은 대기열을 거쳐 보냅니다. 저장은 id 기준 덮어쓰기라 다시 보내도 중복되지 않아요.
 function enqueue(op) { queue.push(op); saveLocal(); return flush(); }
@@ -821,7 +916,7 @@ async function pull(showToast) {
     lastPull = Date.now();
     if (showToast) toast(t('pulled', { n: entries.length }));
   } catch (e) {
-    setSync('err', /key|clé|키/i.test(e.message) ? 'keyError' : 'offline');
+    setSync('err', /auth|jwt|token|row-level|permission/i.test(e.message) ? 'keyError' : 'offline');
     if (showToast) toast(t('pullFail', { e: esc(e.message) }));
   }
 }
@@ -1415,7 +1510,8 @@ function listEditor(elId, key, field) {
 }
 function renderSettings() {
   $('s-user').value = device.user;
-  $('s-url').value = conn.url; $('s-key').value = conn.key;
+  $('s-account').textContent = session ? t('signedInAs', { e: session.user.email }) : '';
+  if (!$('s-url').value) { const oc = oldConn(); $('s-url').value = oc.url; $('s-key').value = oc.key; }
   $('s-fee-normal').value = amtInput(settings.feeNormal);
   $('s-fee-student').value = amtInput(settings.feeStudent);
   $('s-late').innerHTML = `<option value="0">${esc(t('lateOff'))}</option>` + [6, 7, 8, 9, 10, 11, 12].map(m => `<option value="${m}">${esc(t('lateFrom', { m: monthName(m) }))}</option>`).join('');
@@ -1453,20 +1549,6 @@ function afterSettingsChange() {
   pushSettings();
   renderSettings(); renderCategorySelect(); renderMethodChips(); renderAccountSelects(); renderProjectSelect(); suggestAccount(); updateMemberField();
 }
-function makeSetupLink() {
-  const data = btoa(unescape(encodeURIComponent(JSON.stringify(conn))));
-  return location.origin + location.pathname + '#setup=' + data;
-}
-function readSetupHash() {
-  const m = /#setup=([^&]+)/.exec(location.hash);
-  if (!m) return false;
-  try {
-    const c = JSON.parse(decodeURIComponent(escape(atob(m[1]))));
-    if (c.url && c.key) { conn = { url: c.url, key: c.key }; localStorage.setItem(K.conn, JSON.stringify(conn)); }
-  } catch (e) {}
-  history.replaceState(null, '', location.pathname);
-  return true;
-}
 function setLang(l) {
   lang = l; device.lang = l; saveDevice();
   applyI18n(); formLabels(); updateMemberField(); updatePieceHint(); renderMemberSelect($('f-member').value);
@@ -1502,7 +1584,7 @@ $('f-amount').oninput = function () { this.value = this.value.replace(/[^0-9.,]/
 $('more-toggle').onclick = () => openMore();
 $('btn-save').onclick = save;
 $('edit-cancel').onclick = () => { const back = returnTo || 'list'; returnTo = null; resetForm(); showScreen(back); };
-$('sync-btn').onclick = () => pull(true);
+$('sync-btn').onclick = () => connected() ? pull(true) : showLogin(true);
 $('btn-sync').onclick = () => pull(true);
 
 chipClick('flt-year', c => { flt.year = c.dataset.year; renderList(); });
@@ -1551,31 +1633,103 @@ $('s-fee-student').onchange = function () { settings.feeStudent = parseAmount(th
 $('s-late').onchange = function () { settings.lateMonth = +this.value; pushSettings(); toast(t('settingsSaved')); };
 $('s-fee-cat').onchange = function () { settings.feeCategory = this.value; afterSettingsChange(); toast(t('settingsSaved')); };
 $('s-don-cat').onchange = function () { settings.donCategory = this.value; afterSettingsChange(); toast(t('settingsSaved')); };
-$('btn-connect').onclick = async () => {
+/* ───────── Connexion (code par e-mail) ───────── */
+function showLogin(show, err) {
+  $('login').hidden = !show;
+  $('l-err').textContent = err || '';
+  if (show) { $('login-step1').hidden = false; $('login-step2').hidden = true; if (!$('l-email').value) $('l-email').value = device.email || ''; }
+}
+function oldConn() { try { const c = JSON.parse(localStorage.getItem(OLD.conn) || 'null') || {}; return { url: c.url || '', key: c.key || '' }; } catch (e) { return { url: '', key: '' }; } }
+async function afterLogin() {
+  const email = session.user.email || '';
+  let ok = false;
+  try { ok = sbOk(await sb.rpc('is_bureau')) === true; }
+  catch (e) { ok = device.bureau && device.email === email; }   // hors ligne : on se fie au dernier contrôle sur cet appareil
+  if (!ok) {
+    isBureau = false;
+    await sb.auth.signOut({ scope: 'local' });
+    session = null;
+    showLogin(true, t('notBureau', { e: email }));
+    setSync('local', 'local');
+    return;
+  }
+  isBureau = true;
+  if (device.email && device.email !== email) { entries = []; members = []; queue = []; saveLocal(); }
+  device.email = email; device.bureau = true; saveDevice();
+  showLogin(false);
+  renderAll();
+  pull(false);
+}
+async function initAuth() {
+  if (!sb) { showLogin(true, t('notConfigured')); $('l-send').disabled = true; return; }
+  sb.auth.onAuthStateChange((ev, s) => {
+    session = s;
+    if (ev === 'SIGNED_OUT') { isBureau = false; showLogin(true); setSync('local', 'local'); }
+  });
+  const { data } = await sb.auth.getSession();
+  session = data.session;
+  if (!session) { showLogin(true); setSync('local', 'local'); return; }
+  await afterLogin();
+}
+let loginEmail = '';
+$('l-send').onclick = async () => {
+  const email = $('l-email').value.trim().toLowerCase();
+  if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) { $('l-err').textContent = t('errEmail'); return; }
+  $('l-err').textContent = ''; $('l-send').disabled = true;
+  const { error } = await sb.auth.signInWithOtp({ email, options: { shouldCreateUser: true } });
+  $('l-send').disabled = false;
+  if (error) { $('l-err').textContent = t('sendFail', { e: error.message }); return; }
+  loginEmail = email;
+  $('l-sent').textContent = t('codeSent', { e: email });
+  $('login-step1').hidden = true; $('login-step2').hidden = false; $('l-code').value = ''; $('l-code').focus();
+};
+$('l-verify').onclick = async () => {
+  const token = $('l-code').value.replace(/\D/g, '');
+  if (token.length < 6) { $('l-err').textContent = t('errCode'); return; }
+  $('l-err').textContent = ''; $('l-verify').disabled = true;
+  const { data, error } = await sb.auth.verifyOtp({ email: loginEmail, token, type: 'email' });
+  $('l-verify').disabled = false;
+  if (error || !data.session) { $('l-err').textContent = t('errCode'); return; }
+  session = data.session;
+  await afterLogin();
+};
+$('l-back').onclick = () => showLogin(true);
+$('l-email').onkeydown = ev => { if (ev.key === 'Enter') $('l-send').click(); };
+$('l-code').onkeydown = ev => { if (ev.key === 'Enter') $('l-verify').click(); };
+$('l-lang').onclick = () => setLang(lang === 'ko' ? 'fr' : 'ko');
+$('btn-signout').onclick = async () => {
+  if (queue.length) { toast(t('signOutPending'), 4200); return; }
+  if (!confirm(t('confirmSignOut'))) return;
+  entries = []; members = []; queue = []; saveLocal();
+  device.bureau = false; saveDevice();
+  await sb.auth.signOut({ scope: 'local' });
+  session = null; isBureau = false;
+  renderAll(); showLogin(true); setSync('local', 'local');
+};
+$('btn-import').onclick = async () => {
+  if (!connected()) { toast(t('needConnect')); return; }
   const url = $('s-url').value.trim(), key = $('s-key').value.trim();
   if (!/^https:\/\/script\.google\.com\/.+\/exec$/.test(url)) { toast(t('urlFormat')); return; }
   if (!key) { toast(t('keyNeeded')); return; }
-  conn = { url, key }; localStorage.setItem(K.conn, JSON.stringify(conn));
-  // 시트가 비어 있으면 이 기기의 기록, 회원, 설정을 먼저 올립니다
+  const btn = $('btn-import'); btn.disabled = true; toast(t('importing'), 60000);
   try {
-    setSync('loading', 'checking');
-    const data = await api({ action: 'list' });
-    if (!arr(data.entries).length && !arr(data.members).length && (entries.length || members.length)) {
-      queue = [{ action: 'saveSettings', settings }, ...members.map(member => ({ action: 'saveMember', member })), ...entries.map(entry => ({ action: 'save', entry }))];
-      saveLocal();
-      await flush();
-      toast(t('connectedUp', { n: entries.length }), 3200);
-    } else {
-      await pull(false);
-      toast(t('connectedDown', { n: entries.length }));
+    const res = await fetch(url, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify({ key, action: 'list' }) });
+    const d = await res.json();
+    if (!d.ok) throw new Error(d.error || 'Apps Script');
+    const E = arr(d.entries).map(normalize), M = arr(d.members).map(normMember);
+    if (d.settings) sbOk(await sb.from('settings').upsert({ id: 1, data: mergeSettings(d.settings) }));
+    for (let i = 0; i < M.length; i += 200) sbOk(await sb.from('members').upsert(M.slice(i, i + 200).map(mToRow)));
+    const renum = [];
+    for (let i = 0; i < E.length; i += 200) {
+      const chunk = E.slice(i, i + 200);
+      const rows = sbOk(await sb.from('entries').upsert(chunk.map(toRow)).select('id,piece'));
+      rows.forEach(r => { const o = chunk.find(x => x.id === r.id); if (o && o.piece !== r.piece) renum.push(o.piece + ' → ' + r.piece); });
     }
-  } catch (e) { setSync('err', 'connFail'); toast(t('connectFail', { e: esc(e.message) }), 3600); }
-};
-$('btn-setup-link').onclick = async () => {
-  if (!connected()) { toast(t('connectFirst')); return; }
-  const link = makeSetupLink();
-  try { await navigator.clipboard.writeText(link); toast(t('linkCopied'), 3200); }
-  catch (e) { prompt(t('linkPrompt'), link); }
+    await pull(false);
+    toast(t('imported', { e: E.length, m: M.length }), 5000);
+    if (renum.length) alert(t('importRenum', { n: renum.length, l: renum.join(', ') }));
+  } catch (e) { toast(t('importFail', { e: esc(e.message) }), 6000); }
+  finally { btn.disabled = false; }
 };
 chipClick('cat-tabs', c => { catTab = c.dataset.cat; renderSettings(); });
 document.querySelectorAll('[data-add]').forEach(b => b.onclick = () => addItem(b.dataset.add));
@@ -1604,11 +1758,10 @@ document.addEventListener('visibilitychange', () => {
 loadLocal();
 lang = device.lang || (/^ko/i.test(navigator.language || '') ? 'ko' : 'fr');
 applyI18n();
-const fromLink = readSetupHash();
 setKind('out');
 renderAll();
 resetForm();
-if (connected()) pull(fromLink); else setSync('local', 'local');
+initAuth();
 </script>
 </body>
 </html>
