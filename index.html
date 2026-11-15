@@ -1257,6 +1257,9 @@ function carriedFee(mid, year) {
   const fees = entries.filter(e => isFee(e) && e.memberId === mid).sort((a, b) => a.date.localeCompare(b.date) || feeYearOf(a).localeCompare(feeYearOf(b)));
   const f = fees[0]; if (!f) return null;
   const py = String(+year - 1);
+  // le report ne vaut que pour une première adhésion commencée en fin d'année (date d'adhésion)
+  const m = members.find(x => x.id === mid);
+  if (m && m.joined && m.joined < `${py}-${String(lm).padStart(2, '0')}-01`) return null;
   return feeYearOf(f) === py && f.date.slice(0, 4) === py && +f.date.slice(5, 7) >= lm ? f : null;
 }
 function covered(mid, year) { return feePaid(mid, year).length > 0 || !!carriedFee(mid, year); }
